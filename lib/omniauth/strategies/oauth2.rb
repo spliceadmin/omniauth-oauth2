@@ -83,6 +83,11 @@ module OmniAuth
 
       def callback_phase # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
         error = request.params["error_reason"] || request.params["error"]
+        Rails.logger.info "*" * 80
+        Rails.logger.info "request.params: #{request.params.inspect}"
+        Rails.logger.info "session: #{session}"
+        Rails.logger.info "*" * 80
+
         if !options.provider_ignores_state && (request.params["state"].to_s.empty? || request.params["state"] != session.delete("omniauth.state"))
           fail!(:csrf_detected, CallbackError.new(:csrf_detected, "CSRF detected"))
         elsif error
