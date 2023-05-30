@@ -1,5 +1,5 @@
 module OmniAuth
   module OAuth2
-    VERSION = "1.8.0".freeze
+    VERSION = "0.0.3".freeze
   end
 end
